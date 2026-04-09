@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0a0e1a;
+  --bg-elev: #0f1525;
+  --card: #111827;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #e8eaf0;
+  --muted: #6b7280;
+  --muted-bright: #9ca3af;
+  --accent: #9ACD32;
+  --accent-dim: rgba(154, 205, 50, 0.15);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Home button (canonical sakhalteam) ── */
+.home-btn {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px 5px 8px;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  opacity: 0.55;
+  transition: opacity 0.2s, color 0.2s, border-color 0.2s;
+}
+.home-btn:hover {
+  opacity: 1;
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Landing page ── */
+.landing {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+}
+
+.landing-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.landing-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.landing-title-jp {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.landing-title-en {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.landing-subtitle {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.landing-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .landing-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Map ── */
+.landing-map {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.yamanote-map {
+  width: 100%;
+  height: auto;
+}
+
+.station-dot-group:hover .station-label {
+  fill: #e8eaf0;
+}
+
+.station-label {
+  font-family: "Inter", sans-serif;
+  pointer-events: none;
+  transition: fill 0.15s;
+}
+
+/* ── Station sign ── */
+.station-sign {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  user-select: none;
+}
+
+.sign-line-badge {
+  text-align: center;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  padding: 6px;
+}
+
+.sign-body {
+  padding: 24px 20px 20px;
+  text-align: center;
+}
+
+.sign-furigana {
+  font-size: 0.85rem;
+  color: #333;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.sign-kanji {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.sign-romaji {
+  font-size: 0.8rem;
+  color: #666;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sign-adjacent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  color: #fff;
+}
+
+.sign-adj-station {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sign-adj-jp {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.sign-adj-en {
+  display: block;
+  font-size: 0.6rem;
+  opacity: 0.8;
+  letter-spacing: 0.03em;
+}
+
+.sign-adj-arrow {
+  font-size: 0.65rem;
+  opacity: 0.7;
+}
+
+.sign-adj-next {
+  text-align: right;
+}
+
+/* ── Panel ── */
+.landing-panel {
+  position: sticky;
+  top: 24px;
+}
+
+.jingle-status {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.8rem;
+}
+
+.jingle-playing {
+  color: var(--accent);
+  animation: pulse-glow 1s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.jingle-ready {
+  color: var(--muted);
+}
+
+.jingle-coming-soon {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.panel-empty {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.panel-empty-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.panel-empty-text {
+  color: var(--muted-bright);
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.panel-empty-hint {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.dot-indicator {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e05a3a;
+  vertical-align: middle;
+  margin: 0 2px;
+}
