@@ -2,3 +2,8 @@ node_modules/
 dist/
 .DS_Store
 *.tsbuildinfo
+
+# Source audio collections (kept locally, not deployed)
+public/JR Train Departure Melodies MP3/
+public/JR東日本*/
+public/claude_read_this.txt

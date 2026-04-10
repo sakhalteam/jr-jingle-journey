@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import type { Station } from "../data/stations";
 import YamanoteMap from "../components/YamanoteMap";
 import StationSign from "../components/StationSign";
-import { playJingle } from "../audio/jingles";
+import { playJingle, stopJingle } from "../audio/jingles";
 
 export default function Landing() {
   const [selected, setSelected] = useState<Station | null>(null);
@@ -10,16 +10,16 @@ export default function Landing() {
 
   const handleSelect = useCallback(
     async (station: Station) => {
+      stopJingle();
       setSelected(station);
-      if (playing) return;
       setPlaying(true);
       try {
         await playJingle(station.id);
       } finally {
-        setTimeout(() => setPlaying(false), 3000);
+        setPlaying(false);
       }
     },
-    [playing]
+    []
   );
 
   return (
@@ -46,18 +46,10 @@ export default function Landing() {
             <>
               <StationSign station={selected} />
               <div className="jingle-status">
-                {selected.hasJingle ? (
-                  playing ? (
-                    <span className="jingle-playing">
-                      ♪ Playing...
-                    </span>
-                  ) : (
-                    <span className="jingle-ready">♪ Click again to replay</span>
-                  )
+                {playing ? (
+                  <span className="jingle-playing">♪ Playing...</span>
                 ) : (
-                  <span className="jingle-coming-soon">
-                    Jingle coming soon
-                  </span>
+                  <span className="jingle-ready">♪ Click again to replay</span>
                 )}
               </div>
             </>
@@ -68,7 +60,7 @@ export default function Landing() {
                 Select a station on the map
               </p>
               <p className="panel-empty-hint">
-                Stations with a <span className="dot-indicator" /> have jingles
+                Every station has a departure melody!
               </p>
             </div>
           )}

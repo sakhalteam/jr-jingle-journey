@@ -90,9 +90,9 @@ export default function YamanoteMap({ selectedId, onSelect }: Props) {
               strokeWidth={isSelected ? 2.5 : 2}
             />
 
-            {/* Jingle indicator */}
-            {station.hasJingle && !isSelected && (
-              <circle cx={x + 7} cy={y - 7} r="2.5" fill="#e05a3a" />
+            {/* Jingle indicator (♪) */}
+            {isSelected && (
+              <text x={x + 10} y={y - 8} fill={yamanoteLine.color} fontSize="9" fontWeight="700">♪</text>
             )}
 
             {/* Label */}
