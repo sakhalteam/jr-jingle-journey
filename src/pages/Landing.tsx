@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { Link } from "react-router-dom";
 import type { Station } from "../data/stations";
 import YamanoteMap from "../components/YamanoteMap";
 import StationSign from "../components/StationSign";
@@ -32,6 +33,9 @@ export default function Landing() {
         <p className="landing-subtitle">
           Click a station to hear its departure melody
         </p>
+        <Link to="/ride" className="ride-launch-btn">
+          Ride the Yamanote
+        </Link>
       </header>
 
       <div className="landing-layout">
